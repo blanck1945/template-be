@@ -1,7 +1,6 @@
 import { Injectable } from '@nestjs/common';
 
-// Definimos una interfaz para mantener el orden de la respuesta
-interface OrchestratorStatus {
+export interface OrchestratorStatus {
   name: string;
   version: string;
   status: string;
