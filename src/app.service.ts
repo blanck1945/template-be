@@ -1,8 +1,33 @@
 import { Injectable } from '@nestjs/common';
 
+// Definimos una interfaz para mantener el orden de la respuesta
+interface OrchestratorStatus {
+  name: string;
+  version: string;
+  status: string;
+  template: string;
+  environment: string;
+  documentation: string;
+  useful_commands: {
+    deploy_check: string;
+    logs: string;
+  };
+}
+
 @Injectable()
 export class AppService {
-  getHello(): string {
-    return 'Hello World!';
+  getStatus(): OrchestratorStatus {
+    return {
+      name: 'BoogiePop Cloud Orchestrator',
+      version: '1.0.0',
+      status: 'Ready & Running',
+      template: 'NestJS + Docker + Nginx (pnpm)',
+      environment: process.env.NODE_ENV || 'development',
+      documentation: 'https://docs.boogiepop.cloud (Coming Soon)',
+      useful_commands: {
+        deploy_check: 'GET /deploy/list',
+        logs: 'docker logs infra-orchestrator',
+      },
+    };
   }
 }
